@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jdqy.beans" >
+	<!-- 完成类到表的映射，属性到字段的映射 -->
+	<class name="Course">
+		<id name="cid" >
+			<generator class="native"/>
+		</id>
+		<property name="cname" />
+	<!-- 对关联属性的映射 -->
+		<set name="students" cascade="save-update" table="middle" inverse="false">
+		<!-- table指定多对多关联的中间表 -->
+			<key column="courseId"/>  <!-- 指定当前类在中间表中对应的外键 -->
+			
+			<many-to-many class="Student" column="studentId"/> 
+			 <!-- 指定关联类在中间表中对应的外键 -->
+		</set>
+		
+	</class>
+</hibernate-mapping>
